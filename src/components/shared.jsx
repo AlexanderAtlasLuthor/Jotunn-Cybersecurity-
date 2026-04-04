@@ -150,11 +150,19 @@ export function useReveal() {
 
 /* ── Nav ───────────────────────────────────────────────────────── */
 export function Nav() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen]         = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const close = () => setOpen(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <>
-      <nav>
+      <nav className={scrolled ? 'scrolled' : ''}>
         <Link className="nav-logo" to="/" onClick={close}>
           <svg className="nav-logo-svg" viewBox="0 0 100 100" fill="none">
             <polygon points="50,6 61,36 93,36 68,55 77,85 50,66 23,85 32,55 7,36 39,36"
