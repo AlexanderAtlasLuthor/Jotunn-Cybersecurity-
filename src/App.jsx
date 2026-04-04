@@ -205,6 +205,45 @@ function Nav() {
   )
 }
 
+/* ── Hero snow canvas (above the glass) ───────────────────────── */
+function HeroSnow() {
+  const ref = useRef(null)
+  useEffect(() => {
+    const canvas = ref.current
+    const ctx = canvas.getContext('2d')
+    let animId
+    function resize() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight }
+    resize()
+    window.addEventListener('resize', resize)
+    const flakes = Array.from({ length: 55 }, () => ({
+      x: Math.random(), y: Math.random(),
+      r: Math.random() * 2 + 0.5,
+      op: Math.random() * 0.25 + 0.06,
+      dx: (Math.random() - 0.5) * 0.3,
+      dy: Math.random() * 0.4 + 0.15,
+    }))
+    function loop() {
+      const W = canvas.width, H = canvas.height
+      ctx.clearRect(0, 0, W, H)
+      flakes.forEach(f => {
+        ctx.beginPath()
+        ctx.arc(f.x * W, f.y * H, f.r, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(210,235,255,${f.op})`
+        ctx.fill()
+        f.y += f.dy / H
+        f.x += f.dx / W
+        if (f.y > 1) { f.y = -0.02; f.x = Math.random() }
+        if (f.x < 0) f.x = 1
+        if (f.x > 1) f.x = 0
+      })
+      animId = requestAnimationFrame(loop)
+    }
+    loop()
+    return () => { cancelAnimationFrame(animId); window.removeEventListener('resize', resize) }
+  }, [])
+  return <canvas ref={ref} className="hero-snow-canvas" />
+}
+
 /* ── Hero ──────────────────────────────────────────────────────── */
 function Hero() {
   const [spot, setSpot] = useState({ x: 50, y: 50 })
@@ -229,6 +268,7 @@ function Hero() {
       />
       <div className="hero-scanlines" />
       <div className="hero-glass" />
+      <HeroSnow />
       <div
         className="hero-spotlight"
         style={{ background: `radial-gradient(650px circle at ${spot.x}% ${spot.y}%, rgba(126,207,255,0.10) 0%, transparent 70%)` }}
@@ -449,9 +489,7 @@ function Footer() {
 function Home() {
   useReveal()
   return (
-    <>
-      <div className="page">
-        <Nav />
+    <div className="page">
         <Hero />
         <div className="divider-line" />
         <Services />
@@ -464,8 +502,7 @@ function Home() {
         <div className="divider-line" />
         <Contact />
         <Footer />
-      </div>
-    </>
+    </div>
   )
 }
 
@@ -492,6 +529,7 @@ export default function App() {
     <BrowserRouter>
       <IceCanvas />
       <Cursor />
+      <Nav />
       <AnimatedRoutes />
     </BrowserRouter>
   )

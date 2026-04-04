@@ -221,7 +221,16 @@ nav.scrolled {
 @keyframes drift1 { from{transform:translate(0,0)scale(1)} to{transform:translate(-25px,18px)scale(1.1)} }
 @keyframes drift2 { from{transform:translate(0,0)scale(1)} to{transform:translate(18px,-25px)scale(1.08)} }
 
-#hero > *:not(.hero-video):not(.hero-glass):not(.frost-circle) { position: relative; z-index: 2; }
+/* snow canvas sits above glass (z-index 1), text content above snow (z-index 2) */
+.hero-snow-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+#hero > *:not(.hero-video):not(.hero-glass):not(.frost-circle):not(.hero-snow-canvas) { position: relative; z-index: 2; }
 
 .hero-tag {
   font-family: 'JetBrains Mono', monospace;
@@ -765,6 +774,8 @@ footer {
 
 /* ── Page transition ──────────────────────────────────────────── */
 .page-transition {
+  position: relative;
+  z-index: 1;
   animation: pageIn 0.32s ease forwards;
 }
 @keyframes pageIn {
@@ -866,8 +877,8 @@ footer {
   position: fixed;
   inset: 0;
   top: 64px;
-  z-index: 999;
-  background: rgba(2,11,18,0.97);
+  z-index: 1001;
+  background: rgba(2,11,18,0.98);
   backdrop-filter: blur(28px) saturate(1.4);
   display: flex;
   align-items: center;
@@ -888,7 +899,7 @@ footer {
   font-weight: 300;
   font-size: clamp(1.4rem, 6vw, 2rem);
   letter-spacing: 0.22em;
-  color: var(--white-dim);
+  color: var(--white);
   text-decoration: none;
   text-transform: uppercase;
   transition: color 0.2s;
@@ -921,4 +932,10 @@ footer {
   .form-row { grid-template-columns: 1fr; }
   .hero-stats { gap: 2rem; }
   footer { flex-direction: column; text-align: center; }
+}
+
+/* ── No cursor on touch / mobile ─────────────────────────────── */
+@media (pointer: coarse) {
+  body { cursor: auto; }
+  #cursor-dot, #cursor-ring { display: none; }
 }

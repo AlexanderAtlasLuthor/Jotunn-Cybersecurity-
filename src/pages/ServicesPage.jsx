@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { IceCanvas, Cursor, Nav, Footer, useReveal } from '../components/shared'
+import { Footer, useReveal } from '../components/shared'
 import TiltCard       from '../components/TiltCard'
 import MagneticButton from '../components/MagneticButton'
 
@@ -8,8 +8,6 @@ export default function ServicesPage() {
   return (
     <>
       <div className="page">
-        <Nav />
-
         {/* ── Page Hero ── */}
         <section id="page-hero">
           <div className="frost-circle fc1" />

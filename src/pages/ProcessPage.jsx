@@ -1,13 +1,11 @@
 import { Link } from 'react-router-dom'
-import { IceCanvas, Cursor, Nav, Footer, useReveal } from '../components/shared'
+import { Footer, useReveal } from '../components/shared'
 
 export default function ProcessPage() {
   useReveal()
   return (
     <>
       <div className="page">
-        <Nav />
-
         {/* ── Page Hero ── */}
         <section id="page-hero">
           <div className="frost-circle fc1" />
