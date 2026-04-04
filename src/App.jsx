@@ -169,6 +169,14 @@ function Nav() {
 function Hero() {
   return (
     <section id="hero">
+      <video
+        className="hero-video"
+        src="/hero-bg.mp4"
+        autoPlay
+        muted
+        loop
+        playsInline
+      />
       <div className="frost-circle fc1" />
       <div className="frost-circle fc2" />
       <div className="frost-circle fc3" />
