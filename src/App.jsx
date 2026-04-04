@@ -4,6 +4,8 @@ import Terminal        from './components/Terminal'
 import StatCounter     from './components/StatCounter'
 import TiltCard        from './components/TiltCard'
 import MagneticButton  from './components/MagneticButton'
+import ParticleTrail   from './components/ParticleTrail'
+import PageTransition  from './components/PageTransition'
 import ServicesPage  from './pages/ServicesPage'
 import BugBountyPage from './pages/BugBountyPage'
 import ProcessPage   from './pages/ProcessPage'
@@ -158,11 +160,19 @@ function useReveal() {
 
 /* ── Nav ───────────────────────────────────────────────────────── */
 function Nav() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen]         = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const close = () => setOpen(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <>
-      <nav>
+      <nav className={scrolled ? 'scrolled' : ''}>
         <Link className="nav-logo" to="/" onClick={close}>
           <img className="nav-logo-svg" src="/logojotunn.png" alt="Jotunn logo" />
           <span className="nav-wordmark">Jötunn</span>
@@ -197,8 +207,18 @@ function Nav() {
 
 /* ── Hero ──────────────────────────────────────────────────────── */
 function Hero() {
+  const [spot, setSpot] = useState({ x: 50, y: 50 })
+
+  function onMouseMove(e) {
+    const r = e.currentTarget.getBoundingClientRect()
+    setSpot({
+      x: ((e.clientX - r.left) / r.width)  * 100,
+      y: ((e.clientY - r.top)  / r.height) * 100,
+    })
+  }
+
   return (
-    <section id="hero">
+    <section id="hero" onMouseMove={onMouseMove}>
       <video
         className="hero-video"
         src="/hero-bg.mp4"
@@ -207,7 +227,12 @@ function Hero() {
         loop
         playsInline
       />
+      <div className="hero-scanlines" />
       <div className="hero-glass" />
+      <div
+        className="hero-spotlight"
+        style={{ background: `radial-gradient(650px circle at ${spot.x}% ${spot.y}%, rgba(126,207,255,0.10) 0%, transparent 70%)` }}
+      />
       <div className="frost-circle fc1" />
       <div className="frost-circle fc2" />
       <div className="frost-circle fc3" />
@@ -454,14 +479,17 @@ function Home() {
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/"           element={<Home />} />
-        <Route path="/services"   element={<ServicesPage />} />
-        <Route path="/bug-bounty" element={<BugBountyPage />} />
-        <Route path="/process"    element={<ProcessPage />} />
-        <Route path="/about"      element={<AboutPage />} />
-        <Route path="/contact"    element={<ContactPage />} />
-      </Routes>
+      <ParticleTrail />
+      <PageTransition>
+        <Routes>
+          <Route path="/"           element={<Home />} />
+          <Route path="/services"   element={<ServicesPage />} />
+          <Route path="/bug-bounty" element={<BugBountyPage />} />
+          <Route path="/process"    element={<ProcessPage />} />
+          <Route path="/about"      element={<AboutPage />} />
+          <Route path="/contact"    element={<ContactPage />} />
+        </Routes>
+      </PageTransition>
     </BrowserRouter>
   )
 }

@@ -74,6 +74,12 @@ nav {
   background: rgba(2,11,18,0.65);
   backdrop-filter: blur(28px) saturate(1.4);
   border-bottom: 1px solid var(--border-dim);
+  transition: height 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+nav.scrolled {
+  height: 48px;
+  background: rgba(2,11,18,0.92);
+  border-bottom-color: rgba(180,215,255,0.18);
 }
 
 .nav-logo {
@@ -157,6 +163,21 @@ nav {
   z-index: -1;
   opacity: 0.35;
   pointer-events: none;
+}
+
+/* ── Scanlines ────────────────────────────────────────────────── */
+.hero-scanlines {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent            0px,
+    transparent            3px,
+    rgba(0, 0, 0, 0.13)   3px,
+    rgba(0, 0, 0, 0.13)   4px
+  );
 }
 
 .hero-glass {
@@ -409,8 +430,9 @@ p { font-size: 0.97rem; line-height: 1.8; color: var(--white-mute); }
   top: 0; left: 0; right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0;
-  transition: opacity 0.4s;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .svc-card::before {
   content: '';
@@ -422,7 +444,7 @@ p { font-size: 0.97rem; line-height: 1.8; color: var(--white-mute); }
 }
 .svc-card:hover { background: rgba(3,17,30,0.5); }
 .svc-card:hover::before { opacity: 1; }
-.svc-card:hover .svc-card-top { opacity: 1; }
+.svc-card:hover .svc-card-top { transform: scaleX(1); }
 
 .svc-num {
   font-family: 'JetBrains Mono', monospace;
@@ -737,6 +759,24 @@ footer {
   transition: color 0.2s;
 }
 .foot-links a:hover { color: var(--white); }
+
+/* ── Page transition ──────────────────────────────────────────── */
+.page-transition {
+  animation: pageIn 0.32s ease forwards;
+}
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Hero spotlight ───────────────────────────────────────────── */
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transition: background 0.08s linear;
+}
 
 /* ── Inner page hero ──────────────────────────────────────────── */
 #page-hero {
