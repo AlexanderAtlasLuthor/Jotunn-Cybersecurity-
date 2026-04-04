@@ -151,15 +151,7 @@ function Nav() {
   return (
     <nav>
       <a className="nav-logo" href="#hero">
-        <svg className="nav-logo-svg" viewBox="0 0 100 100" fill="none">
-          <polygon points="50,6 61,36 93,36 68,55 77,85 50,66 23,85 32,55 7,36 39,36"
-            fill="none" stroke="rgba(200,235,255,0.75)" strokeWidth="2.2" strokeLinejoin="round"/>
-          <circle cx="50" cy="50" r="16" fill="none" stroke="rgba(126,207,255,0.5)" strokeWidth="1.5"/>
-          <circle cx="50" cy="50" r="5" fill="rgba(126,207,255,0.8)"/>
-          <polygon points="50,2 54,12 50,18 46,12" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
-          <polygon points="93,33 97,43 87,43" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
-          <polygon points="7,33 3,43 13,43" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
-        </svg>
+        <img className="nav-logo-svg" src="/logojotunn.png" alt="Jötunn logo" />
         <span className="nav-wordmark">Jötunn</span>
       </a>
       <ul className="nav-links">
@@ -184,36 +176,7 @@ function Hero() {
       <p className="hero-tag">// Offensive Security &amp; Bug Bounty</p>
 
       <div className="hero-emblem">
-        <svg viewBox="0 0 200 200" fill="none">
-          <defs>
-            <linearGradient id="ig1" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#e8f6ff" stopOpacity="0.95"/>
-              <stop offset="50%" stopColor="#7ecfff" stopOpacity="0.85"/>
-              <stop offset="100%" stopColor="#c0e8ff" stopOpacity="0.9"/>
-            </linearGradient>
-            <linearGradient id="ig2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#5dffd8" stopOpacity="0.45"/>
-              <stop offset="100%" stopColor="#7ecfff" stopOpacity="0.28"/>
-            </linearGradient>
-          </defs>
-          <polygon points="100,10 118,68 178,68 130,106 148,164 100,126 52,164 70,106 22,68 82,68"
-            fill="none" stroke="url(#ig1)" strokeWidth="2.5" strokeLinejoin="round"/>
-          <polygon points="100,2 107,22 100,32 93,22" fill="none" stroke="rgba(225,245,255,0.8)" strokeWidth="1.8"/>
-          <polygon points="185,62 196,76 176,80 172,65" fill="none" stroke="rgba(225,245,255,0.7)" strokeWidth="1.5"/>
-          <polygon points="15,62 4,76 24,80 28,65" fill="none" stroke="rgba(225,245,255,0.7)" strokeWidth="1.5"/>
-          <polygon points="152,162 162,178 142,175 138,158" fill="none" stroke="rgba(225,245,255,0.7)" strokeWidth="1.5"/>
-          <polygon points="48,162 38,178 58,175 62,158" fill="none" stroke="rgba(225,245,255,0.7)" strokeWidth="1.5"/>
-          <polygon points="100,38 132,58 148,100 132,142 100,162 68,142 52,100 68,58"
-            fill="rgba(126,207,255,0.04)" stroke="rgba(126,207,255,0.32)" strokeWidth="1.5"/>
-          <line x1="100" y1="10" x2="100" y2="38" stroke="rgba(180,220,255,0.28)" strokeWidth="1"/>
-          <line x1="178" y1="68" x2="148" y2="78" stroke="rgba(180,220,255,0.28)" strokeWidth="1"/>
-          <line x1="148" y1="164" x2="132" y2="145" stroke="rgba(180,220,255,0.28)" strokeWidth="1"/>
-          <line x1="52" y1="164" x2="68" y2="145" stroke="rgba(180,220,255,0.28)" strokeWidth="1"/>
-          <line x1="22" y1="68" x2="52" y2="78" stroke="rgba(180,220,255,0.28)" strokeWidth="1"/>
-          <circle cx="100" cy="100" r="24" fill="rgba(5,15,30,0.85)" stroke="rgba(126,207,255,0.38)" strokeWidth="1.5"/>
-          <circle cx="100" cy="100" r="12" fill="url(#ig2)"/>
-          <circle cx="100" cy="100" r="5" fill="rgba(126,207,255,0.9)"/>
-        </svg>
+        <img src="/logojotunn.png" alt="Jötunn emblem" />
       </div>
 
       <h1>JÖTUNN</h1>
