@@ -1,11 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
-import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link, NavLink, useLocation } from 'react-router-dom'
 import Terminal        from './components/Terminal'
 import StatCounter     from './components/StatCounter'
 import TiltCard        from './components/TiltCard'
 import MagneticButton  from './components/MagneticButton'
 import ParticleTrail   from './components/ParticleTrail'
-import PageTransition  from './components/PageTransition'
 import ServicesPage  from './pages/ServicesPage'
 import BugBountyPage from './pages/BugBountyPage'
 import ProcessPage   from './pages/ProcessPage'
@@ -475,21 +474,29 @@ function Home() {
   )
 }
 
+/* ── Animated Routes ───────────────────────────────────────────── */
+function AnimatedRoutes() {
+  const location = useLocation()
+  return (
+    <div key={location.key} className="page-transition">
+      <Routes location={location}>
+        <Route path="/"           element={<Home />} />
+        <Route path="/services"   element={<ServicesPage />} />
+        <Route path="/bug-bounty" element={<BugBountyPage />} />
+        <Route path="/process"    element={<ProcessPage />} />
+        <Route path="/about"      element={<AboutPage />} />
+        <Route path="/contact"    element={<ContactPage />} />
+      </Routes>
+    </div>
+  )
+}
+
 /* ── App / Router ──────────────────────────────────────────────── */
 export default function App() {
   return (
     <BrowserRouter>
       <ParticleTrail />
-      <PageTransition>
-        <Routes>
-          <Route path="/"           element={<Home />} />
-          <Route path="/services"   element={<ServicesPage />} />
-          <Route path="/bug-bounty" element={<BugBountyPage />} />
-          <Route path="/process"    element={<ProcessPage />} />
-          <Route path="/about"      element={<AboutPage />} />
-          <Route path="/contact"    element={<ContactPage />} />
-        </Routes>
-      </PageTransition>
+      <AnimatedRoutes />
     </BrowserRouter>
   )
 }
