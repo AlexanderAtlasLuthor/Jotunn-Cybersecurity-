@@ -236,8 +236,12 @@ h1 {
   background: linear-gradient(155deg, #e8f6ff 0%, #acd9f5 30%, #7ecfff 55%, #c8eeff 80%, #ffffff 100%);
   -webkit-background-clip: text;
   background-clip: text;
+}
+
+.h1-letter {
+  display: inline-block;
   opacity: 0;
-  animation: riseIn 1s 0.4s ease-out forwards;
+  animation: riseIn 0.6s ease-out forwards;
 }
 
 .h1-sub {

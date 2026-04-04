@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { IceCanvas, Cursor, Nav, Footer, useReveal } from '../components/shared'
+import TiltCard       from '../components/TiltCard'
+import MagneticButton from '../components/MagneticButton'
 
 export default function ServicesPage() {
   useReveal()
@@ -39,12 +41,12 @@ export default function ServicesPage() {
                 ['05', 'Regulated Industries',      'Security assessments aligned to HIPAA, PCI-DSS, SOC 2, and Florida-specific compliance frameworks — with documentation your auditors accept.'],
                 ['06', 'Security Training',         'Technical training for dev and IT teams covering offensive techniques, secure development practices, and threat modeling workshops.'],
               ].map(([num, title, desc]) => (
-                <div className="svc-card" key={num}>
+                <TiltCard key={num}>
                   <div className="svc-card-top" />
                   <div className="svc-num">{num}</div>
                   <h3>{title}</h3>
                   <p>{desc}</p>
-                </div>
+                </TiltCard>
               ))}
             </div>
           </div>
@@ -61,7 +63,7 @@ export default function ServicesPage() {
               <p style={{ maxWidth: '480px', margin: '0 auto 2.5rem' }}>
                 Tell us your scope and we'll respond within 24 business hours with a proposal.
               </p>
-              <Link className="btn-ice" to="/contact">Contact Us →</Link>
+              <MagneticButton className="btn-ice" to="/contact" as={Link}>Contact Us →</MagneticButton>
             </div>
           </div>
         </section>

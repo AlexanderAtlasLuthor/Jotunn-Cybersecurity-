@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom'
-import Terminal    from './components/Terminal'
-import StatCounter from './components/StatCounter'
+import Terminal        from './components/Terminal'
+import StatCounter     from './components/StatCounter'
+import TiltCard        from './components/TiltCard'
+import MagneticButton  from './components/MagneticButton'
 import ServicesPage  from './pages/ServicesPage'
 import BugBountyPage from './pages/BugBountyPage'
 import ProcessPage   from './pages/ProcessPage'
@@ -224,7 +226,11 @@ function Hero() {
         <img src="/logojotunn.png" alt="Jötunn emblem" />
       </div>
 
-      <h1>JÖTUNN</h1>
+      <h1 aria-label="JÖTUNN">
+        {'JÖTUNN'.split('').map((ch, i) => (
+          <span key={i} className="h1-letter" style={{ animationDelay: `${0.4 + i * 0.07}s` }}>{ch}</span>
+        ))}
+      </h1>
       <span className="h1-sub">Cybersecurity</span>
 
       <p className="hero-desc">
@@ -232,8 +238,8 @@ function Hero() {
       </p>
 
       <div className="hero-actions">
-        <a className="btn-ice" href="#contact">Request an Assessment</a>
-        <a className="btn-ghost-ice" href="#services">Our Services</a>
+        <MagneticButton className="btn-ice" href="#contact">Request an Assessment</MagneticButton>
+        <MagneticButton className="btn-ghost-ice" href="#services">Our Services</MagneticButton>
       </div>
 
       <div className="hero-stats">
@@ -267,12 +273,12 @@ function Services() {
             ['05', 'Regulated Industries', 'Security assessments aligned to HIPAA, PCI-DSS, SOC 2, and Florida-specific compliance frameworks.'],
             ['06', 'Security Training', 'Technical training for dev and IT teams in offensive techniques, secure development, and threat modeling.'],
           ].map(([num, title, desc]) => (
-            <div className="svc-card" key={num}>
+            <TiltCard key={num}>
               <div className="svc-card-top" />
               <div className="svc-num">{num}</div>
               <h3>{title}</h3>
               <p>{desc}</p>
-            </div>
+            </TiltCard>
           ))}
         </div>
       </div>
