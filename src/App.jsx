@@ -175,7 +175,7 @@ function Nav() {
       <nav className={scrolled ? 'scrolled' : ''}>
         <Link className="nav-logo" to="/" onClick={close}>
           <img className="nav-logo-svg" src="/logojotunn.png" alt="Jotunn logo" />
-          <span className="nav-wordmark">Jötunn</span>
+          <span className="nav-wordmark">Jötunn <span className="nav-wordmark-sub">Cybersecurity</span></span>
         </Link>
         <ul className="nav-links">
           <li><NavLink to="/" end>Home</NavLink></li>
