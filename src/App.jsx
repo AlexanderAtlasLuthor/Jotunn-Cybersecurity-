@@ -191,6 +191,7 @@ function Hero() {
         loop
         playsInline
       />
+      <div className="hero-glass" />
       <div className="frost-circle fc1" />
       <div className="frost-circle fc2" />
       <div className="frost-circle fc3" />

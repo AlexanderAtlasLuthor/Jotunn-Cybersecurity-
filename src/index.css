@@ -144,11 +144,19 @@ nav {
   z-index: -1;
   opacity: 0.35;
   pointer-events: none;
-  filter: blur(4px) saturate(0.8);
-  transform: scale(1.05);
 }
 
-.frost-circle { position: absolute; border-radius: 50%; pointer-events: none; }
+.hero-glass {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  background: rgba(2, 11, 18, 0.38);
+  pointer-events: none;
+}
+
+.frost-circle { position: absolute; border-radius: 50%; pointer-events: none; z-index: 1; }
 .fc1 {
   width: 700px; height: 700px;
   top: 50%; left: 50%; transform: translate(-50%,-50%);
@@ -168,6 +176,8 @@ nav {
 }
 @keyframes drift1 { from{transform:translate(0,0)scale(1)} to{transform:translate(-25px,18px)scale(1.1)} }
 @keyframes drift2 { from{transform:translate(0,0)scale(1)} to{transform:translate(18px,-25px)scale(1.08)} }
+
+#hero > *:not(.hero-video):not(.hero-glass) { position: relative; z-index: 2; }
 
 .hero-tag {
   font-family: 'JetBrains Mono', monospace;
