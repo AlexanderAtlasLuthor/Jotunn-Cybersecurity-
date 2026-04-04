@@ -775,6 +775,75 @@ footer {
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ── Burger button ─────────────────────────────────────────────── */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  z-index: 1100;
+}
+.burger span {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--white);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+.burger.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.burger.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ── Mobile menu overlay ───────────────────────────────────────── */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  top: 64px;
+  z-index: 999;
+  background: rgba(2,11,18,0.97);
+  backdrop-filter: blur(28px) saturate(1.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+.mobile-menu ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+.mobile-menu a {
+  font-family: 'Cinzel', serif;
+  font-weight: 300;
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  letter-spacing: 0.22em;
+  color: var(--white-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--accent); }
+.mobile-menu .mobile-cta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  border: 1px solid rgba(126,207,255,0.35);
+  padding: 0.7rem 2rem;
+  background: rgba(126,207,255,0.04);
+}
+
 @media (max-width: 900px) {
   .svc-grid { grid-template-columns: 1fr 1fr; }
   .bounty-layout, .contact-layout, .svc-header { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -783,6 +852,8 @@ footer {
   .why-grid { grid-template-columns: 1fr; }
   nav { padding: 0 1.2rem; }
   .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .burger { display: flex; }
 }
 @media (max-width: 600px) {
   .svc-grid { grid-template-columns: 1fr; }

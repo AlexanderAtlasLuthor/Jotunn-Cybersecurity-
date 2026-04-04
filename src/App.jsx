@@ -154,29 +154,48 @@ function useReveal() {
 
 /* ── Nav ───────────────────────────────────────────────────────── */
 function Nav() {
+  const [open, setOpen] = useState(false)
+  const close = () => setOpen(false)
   return (
-    <nav>
-      <Link className="nav-logo" to="/">
-        <svg className="nav-logo-svg" viewBox="0 0 100 100" fill="none">
-          <polygon points="50,6 61,36 93,36 68,55 77,85 50,66 23,85 32,55 7,36 39,36"
-            fill="none" stroke="rgba(200,235,255,0.75)" strokeWidth="2.2" strokeLinejoin="round"/>
-          <circle cx="50" cy="50" r="16" fill="none" stroke="rgba(126,207,255,0.5)" strokeWidth="1.5"/>
-          <circle cx="50" cy="50" r="5" fill="rgba(126,207,255,0.8)"/>
-          <polygon points="50,2 54,12 50,18 46,12" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
-          <polygon points="93,33 97,43 87,43" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
-          <polygon points="7,33 3,43 13,43" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
-        </svg>
-        <span className="nav-wordmark">Jötunn</span>
-      </Link>
-      <ul className="nav-links">
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/services">Services</Link></li>
-        <li><Link to="/bug-bounty">Bug Bounty</Link></li>
-        <li><Link to="/process">Process</Link></li>
-        <li><Link to="/about">About</Link></li>
-      </ul>
-      <Link className="nav-cta" to="/contact">Get a Quote</Link>
-    </nav>
+    <>
+      <nav>
+        <Link className="nav-logo" to="/" onClick={close}>
+          <svg className="nav-logo-svg" viewBox="0 0 100 100" fill="none">
+            <polygon points="50,6 61,36 93,36 68,55 77,85 50,66 23,85 32,55 7,36 39,36"
+              fill="none" stroke="rgba(200,235,255,0.75)" strokeWidth="2.2" strokeLinejoin="round"/>
+            <circle cx="50" cy="50" r="16" fill="none" stroke="rgba(126,207,255,0.5)" strokeWidth="1.5"/>
+            <circle cx="50" cy="50" r="5" fill="rgba(126,207,255,0.8)"/>
+            <polygon points="50,2 54,12 50,18 46,12" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
+            <polygon points="93,33 97,43 87,43" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
+            <polygon points="7,33 3,43 13,43" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
+          </svg>
+          <span className="nav-wordmark">Jötunn</span>
+        </Link>
+        <ul className="nav-links">
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/services">Services</Link></li>
+          <li><Link to="/bug-bounty">Bug Bounty</Link></li>
+          <li><Link to="/process">Process</Link></li>
+          <li><Link to="/about">About</Link></li>
+        </ul>
+        <Link className="nav-cta" to="/contact">Get a Quote</Link>
+        <button className={`burger${open ? ' open' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Menu">
+          <span /><span /><span />
+        </button>
+      </nav>
+      {open && (
+        <div className="mobile-menu">
+          <ul>
+            <li><Link to="/" onClick={close}>Home</Link></li>
+            <li><Link to="/services" onClick={close}>Services</Link></li>
+            <li><Link to="/bug-bounty" onClick={close}>Bug Bounty</Link></li>
+            <li><Link to="/process" onClick={close}>Process</Link></li>
+            <li><Link to="/about" onClick={close}>About</Link></li>
+            <li><Link to="/contact" onClick={close} className="mobile-cta">Get a Quote</Link></li>
+          </ul>
+        </div>
+      )}
+    </>
   )
 }
 
