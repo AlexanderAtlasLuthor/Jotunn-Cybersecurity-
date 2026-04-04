@@ -1,4 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import ServicesPage  from './pages/ServicesPage'
+import BugBountyPage from './pages/BugBountyPage'
+import ProcessPage   from './pages/ProcessPage'
+import AboutPage     from './pages/AboutPage'
+import ContactPage   from './pages/ContactPage'
 import './index.css'
 
 /* ── Canvas background ─────────────────────────────────────────── */
@@ -150,17 +156,25 @@ function useReveal() {
 function Nav() {
   return (
     <nav>
-      <a className="nav-logo" href="#hero">
-        <img className="nav-logo-svg" src="/logojotunn.png" alt="Jötunn logo" />
+      <Link className="nav-logo" to="/">
+        <svg className="nav-logo-svg" viewBox="0 0 100 100" fill="none">
+          <polygon points="50,6 61,36 93,36 68,55 77,85 50,66 23,85 32,55 7,36 39,36"
+            fill="none" stroke="rgba(200,235,255,0.75)" strokeWidth="2.2" strokeLinejoin="round"/>
+          <circle cx="50" cy="50" r="16" fill="none" stroke="rgba(126,207,255,0.5)" strokeWidth="1.5"/>
+          <circle cx="50" cy="50" r="5" fill="rgba(126,207,255,0.8)"/>
+          <polygon points="50,2 54,12 50,18 46,12" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
+          <polygon points="93,33 97,43 87,43" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
+          <polygon points="7,33 3,43 13,43" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
+        </svg>
         <span className="nav-wordmark">Jötunn</span>
-      </a>
+      </Link>
       <ul className="nav-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#bounty">Bug Bounty</a></li>
-        <li><a href="#process">Process</a></li>
-        <li><a href="#why">About</a></li>
+        <li><Link to="/services">Services</Link></li>
+        <li><Link to="/bug-bounty">Bug Bounty</Link></li>
+        <li><Link to="/process">Process</Link></li>
+        <li><Link to="/about">About</Link></li>
       </ul>
-      <a className="nav-cta" href="#contact">Get a Quote</a>
+      <Link className="nav-cta" to="/contact">Get a Quote</Link>
     </nav>
   )
 }
@@ -422,10 +436,9 @@ function Footer() {
   )
 }
 
-/* ── App ───────────────────────────────────────────────────────── */
-export default function App() {
+/* ── Home (untouched) ──────────────────────────────────────────── */
+function Home() {
   useReveal()
-
   return (
     <>
       <IceCanvas />
@@ -446,5 +459,21 @@ export default function App() {
         <Footer />
       </div>
     </>
+  )
+}
+
+/* ── App / Router ──────────────────────────────────────────────── */
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/"           element={<Home />} />
+        <Route path="/services"   element={<ServicesPage />} />
+        <Route path="/bug-bounty" element={<BugBountyPage />} />
+        <Route path="/process"    element={<ProcessPage />} />
+        <Route path="/about"      element={<AboutPage />} />
+        <Route path="/contact"    element={<ContactPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }

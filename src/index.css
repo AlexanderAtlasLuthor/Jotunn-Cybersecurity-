@@ -709,6 +709,32 @@ footer {
 }
 .foot-links a:hover { color: var(--white); }
 
+/* ── Inner page header ─────────────────────────────────────────── */
+.page-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.page-h1 {
+  font-family: 'Cinzel', serif;
+  font-weight: 300;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  letter-spacing: 0.08em;
+  line-height: 1.05;
+  color: transparent;
+  background: linear-gradient(155deg, #e8f6ff 0%, #acd9f5 30%, #7ecfff 55%, #c8eeff 80%, #ffffff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 1.2rem;
+}
+.page-subtitle {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--white-mute);
+  max-width: 560px;
+  margin: 0 auto;
+}
+
 @keyframes riseIn {
   from { opacity: 0; transform: translateY(18px); }
   to   { opacity: 1; transform: translateY(0); }
