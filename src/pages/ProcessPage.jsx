@@ -5,8 +5,6 @@ export default function ProcessPage() {
   useReveal()
   return (
     <>
-      <IceCanvas />
-      <Cursor />
       <div className="page">
         <Nav />
 

@@ -96,27 +96,32 @@ function IceCanvas() {
 
 /* ── Custom cursor ─────────────────────────────────────────────── */
 function Cursor() {
+  const dotRef  = useRef(null)
   const ringRef = useRef(null)
 
   useEffect(() => {
+    const dot  = dotRef.current
     const ring = ringRef.current
+    let mx = window.innerWidth / 2, my = window.innerHeight / 2
+    let rx = mx, ry = my
+    let animId
 
-    function onMove(e) {
-      ring.style.left = e.clientX + 'px'
-      ring.style.top  = e.clientY + 'px'
-    }
+    const onMove = e => { mx = e.clientX; my = e.clientY }
     document.addEventListener('mousemove', onMove)
 
-    function onEnter() {
-      ring.style.width = '52px'; ring.style.height = '52px'
-      ring.style.borderColor = 'rgba(126,207,255,0.75)'
-      ring.style.boxShadow = '0 0 18px rgba(126,207,255,0.45)'
+    function tick() {
+      dot.style.left  = mx + 'px'
+      dot.style.top   = my + 'px'
+      rx += (mx - rx) * 0.18
+      ry += (my - ry) * 0.18
+      ring.style.left = rx + 'px'
+      ring.style.top  = ry + 'px'
+      animId = requestAnimationFrame(tick)
     }
-    function onLeave() {
-      ring.style.width = '34px'; ring.style.height = '34px'
-      ring.style.borderColor = 'rgba(126,207,255,0.5)'
-      ring.style.boxShadow = '0 0 8px rgba(126,207,255,0.2)'
-    }
+    animId = requestAnimationFrame(tick)
+
+    function onEnter() { ring.classList.add('cursor-hover') }
+    function onLeave() { ring.classList.remove('cursor-hover') }
 
     const targets = document.querySelectorAll('a, button, .svc-card, .why-card')
     targets.forEach(el => {
@@ -125,6 +130,7 @@ function Cursor() {
     })
 
     return () => {
+      cancelAnimationFrame(animId)
       document.removeEventListener('mousemove', onMove)
       targets.forEach(el => {
         el.removeEventListener('mouseenter', onEnter)
@@ -133,7 +139,12 @@ function Cursor() {
     }
   }, [])
 
-  return <div id="cursor-ring" ref={ringRef} />
+  return (
+    <>
+      <div id="cursor-dot"  ref={dotRef}  />
+      <div id="cursor-ring" ref={ringRef} />
+    </>
+  )
 }
 
 /* ── Reveal observer ───────────────────────────────────────────── */
@@ -434,13 +445,11 @@ function Footer() {
   )
 }
 
-/* ── Home (untouched) ──────────────────────────────────────────── */
+/* ── Home ──────────────────────────────────────────────────────── */
 function Home() {
   useReveal()
   return (
     <>
-      <IceCanvas />
-      <Cursor />
       <div className="page">
         <Nav />
         <Hero />
@@ -481,6 +490,8 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
+      <IceCanvas />
+      <Cursor />
       <AnimatedRoutes />
     </BrowserRouter>
   )

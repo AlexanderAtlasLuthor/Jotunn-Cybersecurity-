@@ -7,8 +7,6 @@ export default function ServicesPage() {
   useReveal()
   return (
     <>
-      <IceCanvas />
-      <Cursor />
       <div className="page">
         <Nav />
 

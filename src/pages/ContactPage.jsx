@@ -7,8 +7,6 @@ export default function ContactPage() {
 
   return (
     <>
-      <IceCanvas />
-      <Cursor />
       <div className="page">
         <Nav />
 
