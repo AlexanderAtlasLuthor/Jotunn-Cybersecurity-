@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { IceCanvas, Cursor, Nav, Footer, useReveal } from '../components/shared'
+import StatCounter from '../components/StatCounter'
 
 export default function AboutPage() {
   useReveal()
@@ -63,11 +64,11 @@ export default function AboutPage() {
         {/* ── Stats ── */}
         <section style={{ background: 'var(--bg-deep)' }}>
           <div className="inner">
-            <div className="hero-stats reveal" style={{ marginTop: 0 }}>
-              <div className="hstat"><span className="hstat-n">150+</span><span className="hstat-l">Vulnerabilities Found</span></div>
-              <div className="hstat"><span className="hstat-n">P1/P2</span><span className="hstat-l">Critical Reports</span></div>
-              <div className="hstat"><span className="hstat-n">72h</span><span className="hstat-l">Avg. Report Delivery</span></div>
-              <div className="hstat"><span className="hstat-n">0</span><span className="hstat-l">Client Data Breaches</span></div>
+            <div className="hero-stats" style={{ marginTop: 0 }}>
+              <StatCounter to={150} suffix="+" label="Vulnerabilities Found" />
+              <StatCounter text="P1/P2"           label="Critical Reports" />
+              <StatCounter to={72}  suffix="h"    label="Avg. Report Delivery" />
+              <StatCounter to={0}                 label="Client Data Breaches" />
             </div>
           </div>
         </section>
