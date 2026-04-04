@@ -164,15 +164,7 @@ function Nav() {
     <>
       <nav>
         <Link className="nav-logo" to="/" onClick={close}>
-          <svg className="nav-logo-svg" viewBox="0 0 100 100" fill="none">
-            <polygon points="50,6 61,36 93,36 68,55 77,85 50,66 23,85 32,55 7,36 39,36"
-              fill="none" stroke="rgba(200,235,255,0.75)" strokeWidth="2.2" strokeLinejoin="round"/>
-            <circle cx="50" cy="50" r="16" fill="none" stroke="rgba(126,207,255,0.5)" strokeWidth="1.5"/>
-            <circle cx="50" cy="50" r="5" fill="rgba(126,207,255,0.8)"/>
-            <polygon points="50,2 54,12 50,18 46,12" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
-            <polygon points="93,33 97,43 87,43" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
-            <polygon points="7,33 3,43 13,43" fill="none" stroke="rgba(220,245,255,0.8)" strokeWidth="1.5"/>
-          </svg>
+          <img className="nav-logo-svg" src="/logojotunn.png" alt="Jotunn logo" />
           <span className="nav-wordmark">Jötunn</span>
         </Link>
         <ul className="nav-links">
