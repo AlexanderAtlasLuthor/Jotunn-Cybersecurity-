@@ -4,7 +4,6 @@ import Terminal        from './components/Terminal'
 import StatCounter     from './components/StatCounter'
 import TiltCard        from './components/TiltCard'
 import MagneticButton  from './components/MagneticButton'
-import ParticleTrail   from './components/ParticleTrail'
 import ServicesPage  from './pages/ServicesPage'
 import BugBountyPage from './pages/BugBountyPage'
 import ProcessPage   from './pages/ProcessPage'
@@ -97,30 +96,26 @@ function IceCanvas() {
 
 /* ── Custom cursor ─────────────────────────────────────────────── */
 function Cursor() {
-  const curRef = useRef(null)
   const ringRef = useRef(null)
 
   useEffect(() => {
-    const cur = curRef.current
     const ring = ringRef.current
 
     function onMove(e) {
-      cur.style.left = e.clientX + 'px'
-      cur.style.top = e.clientY + 'px'
       ring.style.left = e.clientX + 'px'
-      ring.style.top = e.clientY + 'px'
+      ring.style.top  = e.clientY + 'px'
     }
     document.addEventListener('mousemove', onMove)
 
     function onEnter() {
-      cur.style.width = '14px'; cur.style.height = '14px'
-      ring.style.width = '46px'; ring.style.height = '46px'
-      ring.style.borderColor = 'rgba(126,207,255,0.65)'
+      ring.style.width = '52px'; ring.style.height = '52px'
+      ring.style.borderColor = 'rgba(126,207,255,0.75)'
+      ring.style.boxShadow = '0 0 18px rgba(126,207,255,0.45)'
     }
     function onLeave() {
-      cur.style.width = '8px'; cur.style.height = '8px'
-      ring.style.width = '30px'; ring.style.height = '30px'
-      ring.style.borderColor = 'rgba(126,207,255,0.35)'
+      ring.style.width = '34px'; ring.style.height = '34px'
+      ring.style.borderColor = 'rgba(126,207,255,0.5)'
+      ring.style.boxShadow = '0 0 8px rgba(126,207,255,0.2)'
     }
 
     const targets = document.querySelectorAll('a, button, .svc-card, .why-card')
@@ -138,12 +133,7 @@ function Cursor() {
     }
   }, [])
 
-  return (
-    <>
-      <div id="cursor" ref={curRef} />
-      <div id="cursor-ring" ref={ringRef} />
-    </>
-  )
+  return <div id="cursor-ring" ref={ringRef} />
 }
 
 /* ── Reveal observer ───────────────────────────────────────────── */
@@ -242,11 +232,7 @@ function Hero() {
         <img src="/logojotunn.png" alt="Jötunn emblem" />
       </div>
 
-      <h1 aria-label="JÖTUNN">
-        {'JÖTUNN'.split('').map((ch, i) => (
-          <span key={i} className="h1-letter" style={{ animationDelay: `${0.4 + i * 0.07}s` }}>{ch}</span>
-        ))}
-      </h1>
+      <h1>JÖTUNN</h1>
       <span className="h1-sub">Cybersecurity</span>
 
       <p className="hero-desc">
@@ -495,7 +481,6 @@ function AnimatedRoutes() {
 export default function App() {
   return (
     <BrowserRouter>
-      <ParticleTrail />
       <AnimatedRoutes />
     </BrowserRouter>
   )

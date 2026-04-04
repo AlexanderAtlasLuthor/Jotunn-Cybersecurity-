@@ -86,30 +86,26 @@ export function IceCanvas() {
 
 /* ── Custom cursor ─────────────────────────────────────────────── */
 export function Cursor() {
-  const curRef = useRef(null)
   const ringRef = useRef(null)
 
   useEffect(() => {
-    const cur = curRef.current
     const ring = ringRef.current
 
     function onMove(e) {
-      cur.style.left = e.clientX + 'px'
-      cur.style.top = e.clientY + 'px'
       ring.style.left = e.clientX + 'px'
-      ring.style.top = e.clientY + 'px'
+      ring.style.top  = e.clientY + 'px'
     }
     document.addEventListener('mousemove', onMove)
 
     function onEnter() {
-      cur.style.width = '14px'; cur.style.height = '14px'
-      ring.style.width = '46px'; ring.style.height = '46px'
-      ring.style.borderColor = 'rgba(126,207,255,0.65)'
+      ring.style.width = '52px'; ring.style.height = '52px'
+      ring.style.borderColor = 'rgba(126,207,255,0.75)'
+      ring.style.boxShadow = '0 0 18px rgba(126,207,255,0.45)'
     }
     function onLeave() {
-      cur.style.width = '8px'; cur.style.height = '8px'
-      ring.style.width = '30px'; ring.style.height = '30px'
-      ring.style.borderColor = 'rgba(126,207,255,0.35)'
+      ring.style.width = '34px'; ring.style.height = '34px'
+      ring.style.borderColor = 'rgba(126,207,255,0.5)'
+      ring.style.boxShadow = '0 0 8px rgba(126,207,255,0.2)'
     }
 
     const targets = document.querySelectorAll('a, button, .svc-card, .why-card')
@@ -127,12 +123,7 @@ export function Cursor() {
     }
   }, [])
 
-  return (
-    <>
-      <div id="cursor" ref={curRef} />
-      <div id="cursor-ring" ref={ringRef} />
-    </>
-  )
+  return <div id="cursor-ring" ref={ringRef} />
 }
 
 /* ── Reveal observer ───────────────────────────────────────────── */
