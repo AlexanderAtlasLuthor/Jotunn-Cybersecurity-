@@ -113,10 +113,10 @@ nav.scrolled {
   text-transform: uppercase;
 }
 .nav-wordmark-sub {
-  font-weight: 300;
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
-  color: var(--white-dim);
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.22em;
+  color: var(--white);
 }
 
 .nav-links { display: flex; gap: 2.2rem; list-style: none; }
