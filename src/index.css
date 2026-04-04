@@ -177,7 +177,7 @@ nav {
 @keyframes drift1 { from{transform:translate(0,0)scale(1)} to{transform:translate(-25px,18px)scale(1.1)} }
 @keyframes drift2 { from{transform:translate(0,0)scale(1)} to{transform:translate(18px,-25px)scale(1.08)} }
 
-#hero > *:not(.hero-video):not(.hero-glass) { position: relative; z-index: 2; }
+#hero > *:not(.hero-video):not(.hero-glass):not(.frost-circle) { position: relative; z-index: 2; }
 
 .hero-tag {
   font-family: 'JetBrains Mono', monospace;

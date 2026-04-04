@@ -165,6 +165,7 @@ export function Nav() {
         <span className="nav-wordmark">Jötunn</span>
       </Link>
       <ul className="nav-links">
+        <li><Link to="/">Home</Link></li>
         <li><Link to="/services">Services</Link></li>
         <li><Link to="/bug-bounty">Bug Bounty</Link></li>
         <li><Link to="/process">Process</Link></li>
