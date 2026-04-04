@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom'
+import Terminal from './components/Terminal'
 import ServicesPage  from './pages/ServicesPage'
 import BugBountyPage from './pages/BugBountyPage'
 import ProcessPage   from './pages/ProcessPage'
@@ -309,28 +310,7 @@ function BugBounty() {
               <span className="badge">Responsible Disclosure</span>
             </div>
           </div>
-          <div className="terminal reveal">
-            <div className="term-bar">
-              <span className="dot dot-r" /><span className="dot dot-y" /><span className="dot dot-g" />
-              <span className="term-title">jotunn :: recon v2.4</span>
-            </div>
-            <div className="tl"><span className="tc"># Target: api.target.com — full scope</span></div>
-            <div className="tl">&nbsp;</div>
-            <div className="tl"><span className="tp">$</span> <span className="to">./recon --mode passive --out subs.txt</span></div>
-            <div className="tl"><span className="ta">[ INFO ]</span> <span className="to">312 subdomains enumerated</span></div>
-            <div className="tl"><span className="ta">[ INFO ]</span> <span className="to">47 live hosts confirmed</span></div>
-            <div className="tl">&nbsp;</div>
-            <div className="tl"><span className="tp">$</span> <span className="to">./probe --fuzz auth --endpoints api_routes.txt</span></div>
-            <div className="tl"><span className="tx">[ CRIT ]</span> <span className="to">IDOR @ /api/v2/account/&#123;id&#125; — no ownership check</span></div>
-            <div className="tl"><span className="tx">[ CRIT ]</span> <span className="to">JWT alg:none accepted — auth bypass confirmed</span></div>
-            <div className="tl"><span className="tx">[ HIGH ]</span> <span className="to">SSRF via webhook param — AWS metadata exposed</span></div>
-            <div className="tl">&nbsp;</div>
-            <div className="tl"><span className="tp">$</span> <span className="to">./report --severity p1 --format cvss</span></div>
-            <div className="tl"><span className="ts">[ DONE ]</span> <span className="to">CVSS scores: 9.8 / 8.6 / 8.1</span></div>
-            <div className="tl"><span className="ts">[ DONE ]</span> <span className="to">Vendor notified — 72h SLA clock started</span></div>
-            <div className="tl">&nbsp;</div>
-            <div className="tl"><span className="tp">$</span> <span className="term-cursor" /></div>
-          </div>
+          <Terminal />
         </div>
       </div>
     </section>
