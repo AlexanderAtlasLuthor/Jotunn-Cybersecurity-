@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom'
 import ServicesPage  from './pages/ServicesPage'
 import BugBountyPage from './pages/BugBountyPage'
 import ProcessPage   from './pages/ProcessPage'
@@ -172,11 +172,11 @@ function Nav() {
           <span className="nav-wordmark">Jötunn</span>
         </Link>
         <ul className="nav-links">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/services">Services</Link></li>
-          <li><Link to="/bug-bounty">Bug Bounty</Link></li>
-          <li><Link to="/process">Process</Link></li>
-          <li><Link to="/about">About</Link></li>
+          <li><NavLink to="/" end>Home</NavLink></li>
+          <li><NavLink to="/services">Services</NavLink></li>
+          <li><NavLink to="/bug-bounty">Bug Bounty</NavLink></li>
+          <li><NavLink to="/process">Process</NavLink></li>
+          <li><NavLink to="/about">About</NavLink></li>
         </ul>
         <Link className="nav-cta" to="/contact">Get a Quote</Link>
         <button className={`burger${open ? ' open' : ''}`} onClick={() => setOpen(o => !o)} aria-label="Menu">
@@ -186,12 +186,12 @@ function Nav() {
       {open && (
         <div className="mobile-menu">
           <ul>
-            <li><Link to="/" onClick={close}>Home</Link></li>
-            <li><Link to="/services" onClick={close}>Services</Link></li>
-            <li><Link to="/bug-bounty" onClick={close}>Bug Bounty</Link></li>
-            <li><Link to="/process" onClick={close}>Process</Link></li>
-            <li><Link to="/about" onClick={close}>About</Link></li>
-            <li><Link to="/contact" onClick={close} className="mobile-cta">Get a Quote</Link></li>
+            <li><NavLink to="/" end onClick={close}>Home</NavLink></li>
+            <li><NavLink to="/services" onClick={close}>Services</NavLink></li>
+            <li><NavLink to="/bug-bounty" onClick={close}>Bug Bounty</NavLink></li>
+            <li><NavLink to="/process" onClick={close}>Process</NavLink></li>
+            <li><NavLink to="/about" onClick={close}>About</NavLink></li>
+            <li><NavLink to="/contact" onClick={close} className={({isActive}) => isActive ? 'mobile-cta active' : 'mobile-cta'}>Get a Quote</NavLink></li>
           </ul>
         </div>
       )}
