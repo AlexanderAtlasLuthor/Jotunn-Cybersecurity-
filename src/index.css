@@ -721,6 +721,21 @@ footer {
 }
 .foot-links a:hover { color: var(--white); }
 
+/* ── Inner page hero ──────────────────────────────────────────── */
+#page-hero {
+  min-height: 52vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 9rem 2rem 5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#page-hero > *:not(.frost-circle) { position: relative; z-index: 2; }
+
 /* ── Inner page header ─────────────────────────────────────────── */
 .page-header {
   text-align: center;
